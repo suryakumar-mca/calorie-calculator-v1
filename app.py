@@ -10,8 +10,6 @@ app = Flask(__name__)
 app.secret_key = 'super_secret_key'  # Needed for session management
 
 # --- SETUP API ---
-# ⚠️ PASTE YOUR KEY BELOW
-# API_KEY = 'AIzaSyAsA_xFebJ31g0Wcv1wNq2msPMkf6K8_fA'
 API_KEY = os.getenv("GEMINI_API_KEY")
 
 
@@ -207,19 +205,11 @@ def construct_verdict_data(food_data, analysed_data):
 def index():
     if request.method == 'POST':
         food_input = request.form['food_text']
-        print(f"FOOD INPUT FOUND ###### = {food_input}")
-
-        # nutrition_data = {'calories': 1890, 'carbs': 720, 'fats': 320,
-        #                 'item_name': '4 Medium Chicken Pizzas', 'protein': 360}
-        # session['nutrition'] = nutrition_data
-        # return render_template('user_details.html', data=nutrition_data)
 
         # 1. Call the AI
-
         nutrition_data = get_nutrition_from_ai(food_input)
 
         if nutrition_data:
-            print(f"nutrition data from API - {nutrition_data}")
             # 2. Store data in session to pass to next page
             session['nutrition'] = nutrition_data
             # 3. Render the Dashboard immediately with the data
@@ -241,47 +231,21 @@ def calculate_deficit():
     except:
         return "Error: Please enter valid numbers."
 
-    print(
-        f"### PRINTING USER INPUT ### AGE - {age}, GENDER - {gender}, HEIGHT - {height}, WEIGHT - {weight}")
-
     # 2. Get the food calories from the previous step (Session)
     if 'nutrition' not in session:
         return "Error: Session expired. Go back to home page."
 
     food_data = session['nutrition']
 
-    print(f"### PRINTING PREVIOUS DATA {food_data}")
-
     analysed_data = get_ideal_nutrition_from_ai(
         height, weight, gender, age, food_data)
-    """analysed_data = {"targets": {
-        "calories": 1898,
-        "protein": 142,
-        "fat": 42,
-        "carbs": 237
-    },
-        "positives": [
-        "Chicken provides valuable protein.",
-        "Cheese contributes essential calcium.",
-        "Tomato sauce offers some vitamins."
-    ],
-        "negatives": [
-        "Meal's calories are extremely high. Reduce portion size significantly.",
-        "Very high saturated fat content. Choose leaner toppings, less cheese.",
-        "High in refined carbohydrates. Opt for a whole-grain crust."
-    ]
-    }"""
 
     if analysed_data:
-        print(f"nutrition data from API - {analysed_data}")
         formatted_data = construct_formatted_data(food_data, analysed_data)
-        print(f"### FORMATTED DATA {formatted_data}")
 
         verdict_data = construct_verdict_data(food_data, analysed_data)
-        print(f"### VERDICT DATA ### -> {verdict_data}")
 
         formatted_data.update(verdict_data=verdict_data)
-        print(f"### REFORMATTED DATA ### -> {formatted_data}")
 
         return render_template("verdict.html", data=formatted_data)
 
