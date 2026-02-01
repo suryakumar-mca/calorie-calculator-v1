@@ -1,0 +1,19 @@
+#virtual env
+myenv/
+.env
+
+#python oriented
+__pycache__/
+*.pyc
+
+# Flask instance folder (if used later)
+instance/
+
+# Logs
+*.log
+
+# macOS files
+.DS_Store
+
+# Editor / IDE
+.vscode/

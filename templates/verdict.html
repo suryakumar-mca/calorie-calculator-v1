@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Verdict</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen px-4 md:px-8 py-8">
+
+  <div class="mb-10 text-center">
+    <h1 class=text-8xl font-extrabold tracking-tight text-slate-900 mb-2">The Verdict</h1>
+  </div>
+
+  <div class="mb-8 w-full">
+    <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-4">1. RECOMMENDED CONSUMPTION LEVELS FOR YOU</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+      
+      <div class="bg-cyan-50 p-6 rounded-3xl border border-cyan-100 shadow-sm transition hover:shadow-md">
+        <h2 class="text-2xl font-bold text-cyan-900 mb-2">Total Calories</h2>
+      <p class="text-5xl font-extrabold text-cyan-600">{{data.targets.calories}} <span class="text-lg">kcal</span></p>
+      </div>
+
+      <!-- Protein Card (Blue) -->
+    <div class="bg-blue-50 p-6 rounded-3xl border border-blue-100 shadow-sm transition hover:shadow-md">
+      <h2 class="text-2xl font-bold text-blue-900 mb-2">Protein</h2>
+      <p class="text-5xl font-extrabold text-blue-600">{{data.targets.protein}}<span class="text-lg">g</span></p>
+    </div>
+
+    <!-- Fat Card (Purple) -->
+    <div class="bg-purple-50 p-6 rounded-3xl border border-purple-100 shadow-sm transition hover:shadow-md">
+      <h2 class="text-2xl font-bold text-purple-900 mb-2">Fat</h2>
+      <p class="text-5xl font-extrabold text-purple-600">{{data.targets.fat}}<span class="text-lg">g</span></p>
+    </div>
+
+    <!-- Carbohydrates Card (Pink) -->
+    <div class="bg-pink-50 p-6 rounded-3xl border border-pink-100 shadow-sm transition hover:shadow-md">
+      <h2 class="text-2xl font-bold text-pink-900 mb-2">Carbs</h2>
+      <p class="text-5xl font-extrabold text-pink-600">{{data.targets.carbs}}<span class="text-lg">g</span></p>
+    </div>
+    </div>
+  </div>
+
+
+  <div class="mb-12 w-full">
+    <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500 mb-4">2. Report Card comparing your expected and actual consumption</h2>
+    
+    <div class="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden w-full">
+      <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-slate-200">
+
+        <div class="p-6 flex-1 flex justify-between items-center">
+          <div>
+            <h3 class="text-sm font-semibold text-slate-500 mb-1">Total Calories</h3>
+            <div class="flex flex-col xl:flex-row xl:items-baseline gap-2">
+              <span class="text-5xl font-extrabold text-black-500">{{data.consumed_data.calories}}<span class="text-lg">kcal</span></span>
+              <span class="text-xl text-slate-400 font-medium">/ {{data.targets.calories}}kcal</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-2">
+            <span class="text-xs font-bold px-2 py-1 rounded-lg border {% if data.verdict_data.status_calories == 'SURPLUS' %}border-red-200 bg-red-50 text-red-700{% elif data.verdict_data.status_calories == 'OPTIMAL' %}border-green-200 bg-green-50 text-green-700{% else %}border-amber-200 bg-amber-50 text-amber-700{% endif %}">{{data.verdict_data.difference_in_calories}}g</span>
+            <span class="text-[10px] font-extrabold uppercase tracking-wide px-3 py-1 rounded-full {% if data.verdict_data.status_calories == 'SURPLUS' %}bg-red-100 text-red-800{% elif data.verdict_data.status_calories == 'OPTIMAL' %}bg-green-100 text-green-800{% else %}bg-amber-100 text-amber-800{% endif %}">{{data.verdict_data.status_calories}}</span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex justify-between items-center">
+          <div>
+            <h3 class="text-sm font-semibold text-slate-500 mb-1">Protein</h3>
+            <div class="flex flex-col xl:flex-row xl:items-baseline gap-2">
+              <span class="text-5xl font-extrabold text-black-500">{{data.consumed_data.protein}}<span class="text-lg">g</span></span>
+              <span class="text-xl text-slate-400 font-medium">/ {{data.targets.protein}}g</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-2">
+            <span class="text-xs font-bold px-2 py-1 rounded-lg border {% if data.verdict_data.status_protein == 'SURPLUS' %}border-red-200 bg-red-50 text-red-700{% elif data.verdict_data.status_protein == 'OPTIMAL' %}border-green-200 bg-green-50 text-green-700{% else %}border-amber-200 bg-amber-50 text-amber-700{% endif %}">{{data.verdict_data.difference_in_protein}}g</span>
+            <span class="text-[10px] font-extrabold uppercase tracking-wide px-3 py-1 rounded-full {% if data.verdict_data.status_protein == 'SURPLUS' %}bg-red-100 text-red-800{% elif data.verdict_data.status_protein == 'OPTIMAL' %}bg-green-100 text-green-800{% else %}bg-amber-100 text-amber-800{% endif %}">{{data.verdict_data.status_protein}}</span>
+          </div>
+        </div>
+
+        <div class="p-6 flex-1 flex justify-between items-center">
+          <div>
+            <h3 class="text-sm font-semibold text-slate-500 mb-1">Fat</h3>
+            <div class="flex flex-col xl:flex-row xl:items-baseline gap-2">
+              <span class="text-5xl font-extrabold text-black-500">{{data.consumed_data.fats}}<span class="text-lg">g</span></span>
+              <span class="text-xl text-slate-400 font-medium">/ {{data.targets.fat}}g</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-2">
+            <span class="text-xs font-bold px-2 py-1 rounded-lg border {% if data.verdict_data.status_fat == 'SURPLUS' %}border-red-200 bg-red-50 text-red-700{% elif data.verdict_data.status_fat == 'OPTIMAL' %}border-green-200 bg-green-50 text-green-700{% else %}border-amber-200 bg-amber-50 text-amber-700{% endif %}">{{data.verdict_data.difference_in_fat}}g</span>
+            <span class="text-[10px] font-extrabold uppercase tracking-wide px-3 py-1 rounded-full {% if data.verdict_data.status_fat == 'SURPLUS' %}bg-red-100 text-red-800{% elif data.verdict_data.status_fat == 'OPTIMAL' %}bg-green-100 text-green-800{% else %}bg-amber-100 text-amber-800{% endif %}">{{data.verdict_data.status_fat}}</span>
+          </div>
+        </div>
+        
+         <div class="p-6 flex-1 flex justify-between items-center">
+          <div>
+            <h3 class="text-sm font-semibold text-slate-500 mb-1">Carbs</h3>
+            <div class="flex flex-col xl:flex-row xl:items-baseline gap-2">
+              <span class="text-5xl font-extrabold text-black-500">{{data.consumed_data.carbs}}<span class="text-lg">g</span></span>
+              <span class="text-xl text-slate-400 font-medium">/ {{data.targets.carbs}}g</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end gap-2">
+            <span class="text-xs font-bold px-2 py-1 rounded-lg border {% if data.verdict_data.status_carbs == 'SURPLUS' %}border-red-200 bg-red-50 text-red-700{% elif data.verdict_data.status_carbs == 'OPTIMAL' %}border-green-200 bg-green-50 text-green-700{% else %}border-amber-200 bg-amber-50 text-amber-700{% endif %}">{{data.verdict_data.difference_in_carbs}}g</span>
+            <span class="text-[10px] font-extrabold uppercase tracking-wide px-3 py-1 rounded-full {% if data.verdict_data.status_carbs == 'SURPLUS' %}bg-red-100 text-red-800{% elif data.verdict_data.status_carbs == 'OPTIMAL' %}bg-green-100 text-green-800{% else %}bg-amber-100 text-amber-800{% endif %}">{{data.verdict_data.status_carbs}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="max-w-5xl mx-auto mb-12">
+    <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">3. AI Insights</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <div class="bg-green-50 rounded-[2rem] border border-green-100 p-8 shadow-sm flex flex-col h-full">
+        <div class="mb-6">
+          <h3 class="text-xl font-bold text-green-900">What You're Doing Right</h3>
+          <p class="text-green-700 text-sm opacity-80 mt-1">Keep keeping on!</p>
+        </div>
+        <div class="h-px bg-green-200 w-full mb-6"></div>
+        <ul class="space-y-4 flex-grow">
+          <li class="flex items-start gap-3">
+            <div class="mt-1 min-w-5 h-5 rounded-full bg-green-200 flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-green-700 font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <span class="text-green-800 font-medium">{{data.positives[0]}}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-1 min-w-5 h-5 rounded-full bg-green-200 flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-green-700 font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <span class="text-green-800 font-medium">{{data.positives[1]}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-rose-50 rounded-[2rem] border border-rose-100 p-8 shadow-sm flex flex-col h-full">
+        <div class="mb-6">
+          <h3 class="text-xl font-bold text-rose-900">Areas to Improve</h3>
+          <p class="text-rose-700 text-sm opacity-80 mt-1">Small tweaks for big results.</p>
+        </div>
+        <div class="h-px bg-rose-200 w-full mb-6"></div>
+        <ul class="space-y-4 flex-grow">
+          <li class="flex items-start gap-3">
+            <div class="mt-1 min-w-5 h-5 rounded-full bg-rose-200 flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-rose-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            <span class="text-rose-800 font-medium">{{data.negatives[0]}}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-1 min-w-5 h-5 rounded-full bg-rose-200 flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-rose-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+            </div>
+            <span class="text-rose-800 font-medium">{{data.negatives[1]}}</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Protein Card (Blue) -->
+  <div class=" rounded-[1.5rem] p-8 border border-violet-200 flex flex-col md:flex-row items-center justify-between gap-6 w-full mb-20">
+    <div class="text-center md:text-left">
+      <h3 class="text-2xl font-extrabold text-violet-900 mb-2">
+        Good News! <span class="text-violet-600">Version 2 is coming...</span>
+      </h3>
+      <p class="text-violet-800 mb-4 font-medium">We are building advanced features to help you track better.</p>
+      <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+        <span class="px-3 py-1 bg-white text-violet-700 text-xs font-bold uppercase tracking-wide rounded-full shadow-sm">User Login</span>
+        <span class="px-3 py-1 bg-white text-violet-700 text-xs font-bold uppercase tracking-wide rounded-full shadow-sm">Save Progress</span>
+        <span class="px-3 py-1 bg-white text-violet-700 text-xs font-bold uppercase tracking-wide rounded-full shadow-sm">Track Past Calories</span>
+        <span class="px-3 py-1 bg-white text-violet-700 text-xs font-bold uppercase tracking-wide rounded-full shadow-sm">Daily Suggestions</span>
+        <span class="px-3 py-1 bg-white text-violet-700 text-xs font-bold uppercase tracking-wide rounded-full shadow-sm">Future Predictions</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

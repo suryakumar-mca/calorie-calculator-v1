@@ -1,0 +1,24 @@
+<!doctype html>
+<script src="/style.css" ></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<body>
+  <div class="flex h-dvh flex-col overflow-hidden">
+    <div class="flex flex-1 flex-col items-center ">
+      <div class=" h-1/4"></div>
+      <h1 class=text-8xl font-extrabold tracking-tight text-slate-900 mb-2">Calculate your Calories</h1>
+      <h3 class=" mt-12 text-4xl text-slate-500 font-medium">Enter what you ate to know it's contents - In a button's click!</h3>
+    </div>
+    
+    <div class="flex-1 flex flex-col items-center">
+      <div class=" h-1/6"></div>
+      <form method="post">
+      <textarea name="food_text" required placeholder="Please enter inside" class="w-3/4 max-w-2xl h-32 p-4 rounded-xl border border-slate-300 bg-white 
+             shadow-sm transition-all duration-200 resize-none
+             focus:ring-4 focus:ring-blue-100 focus:border-blue-500 focus:outline-none"></textarea>
+        <button class="mt-6 px-8 py-3 bg-[#C2B280] hover:bg-[#B4A26F] text-white font-semibold rounded-lg 
+                 shadow-lg active:scale-95 transition-all"> Calculate the Calories </button>
+      </form>
+    </div>
+    
+  </div>
+</body>
