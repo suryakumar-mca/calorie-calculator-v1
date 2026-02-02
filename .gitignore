@@ -17,3 +17,6 @@ instance/
 
 # Editor / IDE
 .vscode/
+
+#node modules
+node_modules
