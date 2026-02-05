@@ -1,26 +1,30 @@
-<!doctype html>
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-  <div class="flex h-dvh flex-col overflow-hidden">
-    <div class="flex flex-1 flex-col items-center ">
-      <div class=" h-1/4"></div>
-      <h1 class=text-8xl font-extrabold tracking-tight text-slate-900 mb-2">Calculate your Calories</h1>
-      <h3 class=" mt-12 text-4xl text-slate-500 font-medium">Enter what you ate to know it's contents - In a button's click!</h3>
-    </div>
-    
-    <div class="flex-1 flex flex-col items-center">
-      <div class=" h-1/6"></div>
-      <form method="post">
-      <textarea name="food_text" required placeholder="Please enter inside" class="w-3/4 max-w-2xl h-32 p-4 rounded-xl border border-slate-300 bg-white 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body class="min-h-screen">
+        <div>
+            <h1 class=" text-6xl sm:text-7xl md:text-9xl font-extrabold text-slate-900 tracking-tight px-4 py-2">How much Calories a Day?</h1>
+            <h3 class=" text-3xl text-slate-500 px-4 py-2 mt-4">Enter what you ate for:</h3>
+            <h3 class=" text-3xl text-slate-500 px-4 py-2">- Breakfast </h3>
+            <h3 class=" text-3xl text-slate-500 px-4 py-2">- Lunch</h3>
+            <h3 class=" text-3xl text-slate-500 px-4 py-2">- Dinner</h3>
+            <h3 class=" text-3xl text-slate-500 px-4 py-2">- Get <span class="font-bold text-[#C2B280] ">AI powered Calorie breakdown</span> and nutritional contents.</h3>
+            
+            <form method="post">
+                <div class="max-w-md mx-auto px-5 py-10 w-full">
+                    <textarea name="food_text" required placeholder="Ex : 3 Dosas with a cup of Sambhar for breakfast, 1 Chicken Briyani for lunch and 3 Rotis with Dhal for dinner" class=" bg-gray-200 rounded-xl w-full max-w-2xl h-32 p-4 border border-slate-300 
              shadow-sm transition-all duration-200 resize-none
              focus:ring-4 focus:ring-blue-100 focus:border-blue-500 focus:outline-none"></textarea>
-        <button class="mt-6 px-8 py-3 bg-[#C2B280] hover:bg-[#B4A26F] text-white font-semibold rounded-lg 
-                 shadow-lg active:scale-95 transition-all"> Calculate the Calories </button>
-      </form>
-    </div>
-    
-  </div>
-</body>
+                </div>
+
+                <div class="max-w-md mx-auto px-20 py-5 w-full">
+                    <button type="submit" class=" rounded-lg bg-[#C2B280] hover:bg-[#B4A26F] text-white px-5 py-2">Calculate the Calories</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
