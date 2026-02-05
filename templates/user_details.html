@@ -2,14 +2,16 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <!-- Page 2 Container: Centered Layout -->
 <div class="min-h-screen bg-slate-50 p-8 font-sans">
 
     <div class="flex flex-1 flex-col items-center ">
-      <h1 class=text-8xl font-extrabold tracking-tight text-slate-900 mb-2">Breakdown of your Meal</h1>
-      <h3 class=" mt-12 text-4xl text-slate-500 font-medium">These are the net nutrient data of what you ate!</h3>
+        <h1 class="text-6xl sm:text-7xl md:text-9xl font-extrabold text-slate-900 tracking-tight px-4 py-2">Breakdown of your Meal</h1>
+        <h3 class=" text-3xl text-slate-500 px-4 py-2 my-4">These are the nutritional contents of your meal with total calories</h3>
     </div>
   
   <!-- 1. The Cards Grid (4 Columns on Desktop, 1 on Mobile) -->
