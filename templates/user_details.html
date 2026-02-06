@@ -10,8 +10,8 @@
 <div class="min-h-screen bg-slate-50 p-8 font-sans">
 
     <div class="flex flex-1 flex-col items-center ">
-        <h1 class="text-6xl sm:text-7xl md:text-9xl font-extrabold text-slate-900 tracking-tight px-4 py-2">Breakdown of your Meal</h1>
-        <h3 class=" text-3xl text-slate-500 px-4 py-2 my-4">These are the nutritional contents of your meal with total calories</h3>
+        <h1 class="text-6xl sm:text-7xl md:text-9xl font-extrabold text-slate-900 tracking-tight px-4 py-2">Nutritional Breakdown of Your Meal</h1>
+        <h3 class=" text-3xl text-slate-500 px-4 py-2 my-4">An overview of calories and macronutrients based on your food intake</h3>
     </div>
   
   <!-- 1. The Cards Grid (4 Columns on Desktop, 1 on Mobile) -->
@@ -46,21 +46,19 @@
    <form action="/calculate_deficit" method="POST">
   <div class="max-w-3xl mx-auto bg-white p-10 rounded-[2rem] shadow-xl border border-slate-100">
     <p class="text-xl text-slate-600 tracking-wide leading-relaxed mb-8 text-center">
-      Now that you have arrived at the calorie counter, I can assume that you want control on your intake. 
-      I can help you by explaining whether these are <span class="font-bold text-slate-900">calorie deficit or surplus</span> 
-      if you share these details:
+      Provide your body details to determine whether your current intake results in a <span class="font-bold text-slate-900">calorie deficit, surplus, or optimal balance.</span>
     </p>
 
     <!-- The Form (Grid for inputs) -->
     <div class="grid grid-cols-2 gap-6">
       <div>
         <label class="block text-sm font-semibold text-slate-700 mb-2">Height (cm)</label>
-        <input type="number" name="height" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-slate-100 focus:outline-none" placeholder="Enter your height in cms">
+        <input type="number" name="height" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-slate-100 focus:outline-none" placeholder="Ex : 168">
       </div>
       <!-- Repeat for Weight, Gender, Age -->
       <div>
         <label class="block text-sm font-semibold text-slate-700 mb-2">Weight (kg)</label>
-        <input type="number" name="weight" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-slate-100 focus:outline-none" placeholder="Enter your weight in kgs">
+        <input type="number" name="weight" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-slate-100 focus:outline-none" placeholder="Ex : 65">
           
       </div>
       <div>
@@ -74,12 +72,12 @@
       </div>
       <div>
         <label class="block text-sm font-semibold text-slate-700 mb-2">Age</label>
-         <input type="number" name="age" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-slate-100 focus:outline-none" placeholder="Enter your age">
+         <input type="number" name="age" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-slate-100 focus:outline-none" placeholder="Ex : 35">
       </div>
     </div>
     
     <button class="w-full mt-10 py-4 bg-[#C2B280] text-white font-bold text-lg rounded-xl hover:bg-[#B4A26F] transition-all">
-      Analyze My Results
+      Analyze My Intake
     </button>
     </form>
   </div>
